@@ -4,7 +4,12 @@ class TeamStandings extends Component {
     constructor(){
         super();
         this.state = {
-            standings:[],
+            standings:{"ALW":[],
+                       "ALC":[],
+                       "ALE":[],
+                       "NLW":[],
+                       "NLC":[],
+                       "NLE":[]},
         };
     }
 
@@ -23,8 +28,40 @@ class TeamStandings extends Component {
         .then(res => res.json())
         .then(
             (result)=>{
-                console.log(result);
-            
+                let listOfDivisions = result.divisionteamstandings.division;
+                for(let i=0; i<listOfDivisions.length;i++){
+                    if(listOfDivisions[i]["@name"]==="American League/West"){
+                        for(let j=0; j<listOfDivisions[i].teamentry.length; j++){
+                            this.state.standings.ALW.push(listOfDivisions[i].teamentry[j].team.Abbreviation);
+                        }
+                    }
+                    else if(listOfDivisions[i]["@name"]==="American League/Central"){
+                        for(let j=0; j<listOfDivisions[i].teamentry.length; j++){
+                            this.state.standings.ALC.push(listOfDivisions[i].teamentry[j].team.Abbreviation);
+                        }
+                    }
+                    else if(listOfDivisions[i]["@name"]==="American League/East"){
+                        for(let j=0; j<listOfDivisions[i].teamentry.length; j++){
+                            this.state.standings.ALE.push(listOfDivisions[i].teamentry[j].team.Abbreviation);
+                        }
+                    }
+                    else if(listOfDivisions[i]["@name"]==="National League/West"){
+                        for(let j=0; j<listOfDivisions[i].teamentry.length; j++){
+                            this.state.standings.NLW.push(listOfDivisions[i].teamentry[j].team.Abbreviation);
+                        }
+                    }
+                    else if(listOfDivisions[i]["@name"]==="National League/Central"){
+                        for(let j=0; j<listOfDivisions[i].teamentry.length; j++){
+                            this.state.standings.NLC.push(listOfDivisions[i].teamentry[j].team.Abbreviation);
+                        }
+                    }
+                    else if(listOfDivisions[i]["@name"]==="National League/East"){
+                        for(let j=0; j<listOfDivisions[i].teamentry.length; j++){
+                            this.state.standings.NLE.push(listOfDivisions[i].teamentry[j].team.Abbreviation);
+                        }
+                    }
+                }
+                console.log(this.state);
                 return(result.divisionteamstandings);
         })
 
