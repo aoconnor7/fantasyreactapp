@@ -1,0 +1,33 @@
+.standings{
+    width:100%;
+}
+
+.leagueHeader{
+    width:100%;
+}
+#americanLeagueHeader{
+    float: left;
+    width:50%;
+}
+
+#nationalLeagueHeader{
+    float: left;
+    width:50%;
+}
+
+.league{
+    width:50%;
+    display: block;
+    text-align: center;
+    float: left;
+    
+}
+.division{
+    display: flex;
+    padding-left:200px;
+    width: 16%;
+    float: left;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
